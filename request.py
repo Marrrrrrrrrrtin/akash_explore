@@ -52,11 +52,11 @@ def get_data(index):
         print(f"Exception occurred for index {index}: {str(e)}")
         return []
 
-#13504274
 # Main part to write into CSV
 def func(index):
     with open(str(index) + '.csv', 'a', encoding='utf-8', newline='') as f:
         writer = csv.writer(f)
+        #get_data depending on the height of the block, adjust the height each time
         for i in range(15530000 + index * 100, 15530000 + index * 100 + 100):
             data = get_data(i)
             if data:
@@ -64,7 +64,7 @@ def func(index):
                     writer.writerow(detail)
 
 
-#run with several threads with small pieces
+#run with several threads with small pieces, adjust the numbers in range depending on needs
 for i in range(20, 50):
     pool = ThreadPool(500)
     pool.map(func, range(i*100, i*100 + 100))
